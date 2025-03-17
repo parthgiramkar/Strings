@@ -1,12 +1,30 @@
 #include<iostream>
 using namespace std;
 
-//uppercase and lowercase not same
+char convtolowercase(char x) {
+    if(x >= 'a' && x <= 'z') {
+        return x ;   //means its already lie
+    }
+    else {
+        char temp = x - 'A' + 'a';
+        return temp;
+    }
+}
+char convtouppercase(char x) {
+    if(x >= 'A' && x <= 'Z') {
+        return x ;   //means its already lie
+    }
+    else {
+        char temp = x - 'a' + 'A';
+        return temp;
+    }
+}
+//uppercase and lowercase not same means case sensitive considered if not used the above function elseconsidered
 bool checkpalindrome(char name[] , int len) {
     int s=0;
     int e=len-1;
     while(s<e) {
-        if(name[s] == name[e]) {
+        if(convtouppercase(name[s]) == convtouppercase(name[e])  ) {
             s++;
             e--;
         }
@@ -18,12 +36,12 @@ bool checkpalindrome(char name[] , int len) {
 }
 int findlength(char name[]) {
     int cnt = 0;
-    for(int i = 0 ; name[i] != '\0' ; i++) {
+    for(int i = 0 ; name[i] != '\0' ; i++) {   //till the null/terminator character donotmeets
         cnt++;
     }
     return cnt;
 }
-//for case of char and to return whole  string -*
+//for case of char and to return whole  string - so used* like in Linkedlist(to aceess the other location) and if normalchar cannot return wholeword
 char *reversestring(char name[] , int len) {
     int s = 0;
     int e=len-1;
@@ -43,7 +61,8 @@ void reversechararray(char name[] , int len) {
 }
 
 int main() {
-/*  char name[28] ; 
+/*  creating the character array
+    char name[28] ; 
     
     cout<<" Enter your name  : - ";
     cout<<endl;
@@ -57,11 +76,11 @@ int main() {
     cout<<endl;
     cin>>name ;
     
-    //name[2] = '\0';
+    name[4] = '\0';
     cout<<"Your name is : - "<<name<<endl;
     cout<<"Total number of characters in string/char array : - "<<findlength(name)<<endl;
     
-    int len = findlength(name);
+    int len = findlength(name);       //total characters
     
     reversechararray(name , len);
     
@@ -70,6 +89,8 @@ int main() {
     cout<<"The reversed  : - "<<reversestring(name , len)<<endl;
     
     cout<<"The string is paplindrome : - "<<checkpalindrome(name ,len)<<endl ;
-}
-
-
+    
+    cout<<"Convert to the lowercase - "<<convtolowercase('M')<<endl;
+    cout<<"Convert to the uppercase - "<<convtouppercase('b')<<endl;
+    
+}   
